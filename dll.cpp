@@ -84,6 +84,8 @@ public:
     }
     void popBack()
     {
+        if (length == 0)
+            return;
         node *temp = tail->prev;
         delete tail;
         tail = temp;
@@ -92,6 +94,7 @@ public:
     }
     void popFront()
     {
+        if (length == 0) return;
         node *temp = head->next;
         delete head;
         head = temp;
@@ -100,12 +103,14 @@ public:
     }
     void deleteAt(int pos)
     {
+        if (length == 0) return;
         if (pos == 0)
         {
             popFront();
             return;
         }
-        else if (pos == length - 1) {
+        else if (pos == length - 1)
+        {
             popBack();
             return;
         }
@@ -125,7 +130,8 @@ public:
     }
     void printAll()
     {
-        cout << "List " << this << " contents: " << "(size = " << length << ")" << endl;
+        cout << "List " << this << " contents: "
+             << "(size = " << length << ")" << endl;
         node *curr = head;
         while (curr != nullptr)
         {
