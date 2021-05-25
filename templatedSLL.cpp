@@ -219,6 +219,11 @@ public:
              << "===========================================\n"
              << endl;
     }
+
+    //check TODO
+    class iterator {
+
+    };
 };
 
 int main() {
@@ -232,3 +237,5 @@ int main() {
     list.displayAll();
     return 0;
 }
+
+//TODO: add list subclass iterator with operator-overloading for +,-,++,--, and class methods 
