@@ -10,7 +10,7 @@ struct node
 class queue
 {
 private:
-    node *front, *back; //last in->[back][]...[][front]<-first in 
+    node *front, *back; //first in->[front][]...[][back]<-last in 
 
 public:
     int length;
@@ -27,7 +27,7 @@ public:
         }
         else
         {
-            temp->next = back;
+            back->next = temp;
             back = temp;
         }
         length++;
@@ -36,20 +36,16 @@ public:
     {
         if (length == 0)
         {
-            return 0;
+            return false;
         }
         if (length == 1) {
             delete back;
             back = nullptr, front = nullptr;
         }
         else {
-            node *curr = back;
-            while (curr->next != front) {
-                curr = curr->next;
-            }
+            node *temp = front->next;
             delete front;
-            curr->next = nullptr;
-            front = curr;
+            front = temp;
         }
         length--;
         return true;
@@ -57,7 +53,7 @@ public:
     void printAll()
     {
         cout << "Contents of queue " << this << ": (size = " << length << ")" << endl;
-        node *curr = back;
+        node *curr = front;
         while (curr != nullptr)
         {
             cout << curr->data << " ";
