@@ -19,7 +19,7 @@ public:
     {
         node *temp = new node;
         temp->data = val;
-        if (back == nullptr)
+        if (length == 0)
         {
             front = temp;
             back = temp;
