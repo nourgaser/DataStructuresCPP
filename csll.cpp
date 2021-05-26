@@ -15,6 +15,8 @@ private:
 public:
     int length;
     list() : head(nullptr), tail(nullptr), length(0) {}
+
+    //insert into the list
     void pushBack(int val)
     {
         node *temp = new node;
@@ -81,6 +83,7 @@ public:
         return true;
     }
 
+    //remove from the list
     bool popBack()
     {
         if (length == 0)
@@ -148,6 +151,34 @@ public:
         length--;
         return true;
     }
+
+    //retreive from the list
+    int front() { return head->data; }
+    int back() { return tail->data; }
+    int at(int pos)
+    {
+        if (pos == 0)
+        {
+            return front();
+        }
+        else if (pos == length - 1)
+        {
+            return back();
+        }
+        else if (pos >= length)
+        {
+            return INT32_MIN; //invalid position
+        }
+        else
+        {
+            node *curr = head;
+            for (int i = 0; i < pos; i++)
+            {
+                curr = curr->next;
+            }
+            return curr->data;
+        }
+    }
     void displayElements(int n) //print n number of elements (can cycle through list if n >= length)
     {
         cout << "Content of list " << this << ": (size = " << length << ")" << endl;
@@ -176,6 +207,15 @@ int main()
 
     l.remove(4);
     l.displayElements(l.length);
+
+    cout << "Front: " << l.front() << endl;
+    cout << "Back: " << l.back() << endl;
+    cout << "At 0: " << l.at(0) << endl;
+    cout << "At 1: " << l.at(1) << endl;
+    cout << "At 2: " << l.at(2) << endl;
+    cout << "At 3: " << l.at(3) << endl;
+    cout << "At 4: " << l.at(4) << endl;
+    cout << "At 5: " << l.at(5) << endl;
 
     return 0;
 }
