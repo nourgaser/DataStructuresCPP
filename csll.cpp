@@ -148,7 +148,7 @@ public:
         length--;
         return true;
     }
-    void displayElements(int n)
+    void displayElements(int n) //print n number of elements (can cycle through list if n >= length)
     {
         cout << "Content of list " << this << ": (size = " << length << ")" << endl;
         node *curr = head;
