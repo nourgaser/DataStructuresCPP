@@ -1,23 +1,30 @@
 #include <iostream>
 using namespace std;
-struct node {
+struct node
+{
     int data;
-    node* next;
+    node *next;
 };
-class SLL {
-    private:
+class list
+{
+private:
     node *head, *tail;
-    public:
-    SLL() {
+
+public:
+    list()
+    {
         head = nullptr, tail = nullptr;
     }
-    void createNode(int val) {
+    void createNode(int val)
+    {
         node *temp = new node;
         temp->next = nullptr, temp->data = val;
-        if (head == nullptr) {
+        if (head == nullptr)
+        {
             head = temp, tail = temp;
         }
-        else {
+        else
+        {
             tail->next = temp;
             tail = temp;
         }
@@ -35,11 +42,13 @@ class SLL {
         }
         head = prev;
     }
-    void printAll() {
+    void printAll()
+    {
         node *curr = head;
 
         cout << "List " << this << " content:" << endl;
-        while(curr != nullptr) {
+        while (curr != nullptr)
+        {
             cout << curr->data << " ";
             curr = curr->next;
         }
@@ -47,14 +56,15 @@ class SLL {
     }
 };
 
-int main() {
-    SLL list;
+int main()
+{
+    list list;
     list.createNode(1);
     list.createNode(2);
     list.createNode(3);
     list.createNode(4);
     list.createNode(5);
-    
+
     list.printAll();
     list.reverse();
     list.printAll();
