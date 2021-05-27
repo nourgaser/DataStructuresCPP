@@ -9,13 +9,11 @@ private:
         node *next;
     };
     node *head, *tail;
+    int _length;
 
 public:
-    list()
-    {
-        head = nullptr, tail = nullptr;
-    }
-    void createNode(int val)
+    list() : head(nullptr), tail(nullptr), _length(0) {}
+    void pushBack(int val)
     {
         node *temp = new node;
         temp->next = nullptr, temp->data = val;
@@ -28,7 +26,128 @@ public:
             tail->next = temp;
             tail = temp;
         }
+        _length++;
     }
+    void pushFront(int val)
+    {
+        node *temp = new node;
+        temp->next = nullptr, temp->data = val;
+        if (head == nullptr)
+        {
+            head = temp, tail = temp;
+        }
+        else
+        {
+            temp->next = head;
+            head = temp;
+        }
+        _length++;
+    }
+    bool insert(int val, int pos)
+    {
+        if (pos >= _length)
+        {
+            return false;
+        }
+
+        if (pos == 0)
+        {
+            pushFront(val);
+            return true;
+        }
+        else if (pos == _length - 1)
+        {
+            pushBack(val);
+            return true;
+        }
+        else
+        {
+            node *curr = head, *temp = new node;
+            temp->data = val;
+            for (int i = 0; i < pos; i++)
+            {
+                curr = curr->next;
+            }
+            temp->next = curr->next;
+            curr->next = temp;
+        }
+        _length++;
+        return true;
+    }
+
+    bool popBack()
+    {
+        if (_length == 0)
+            return false;
+        if (_length == 1)
+        {
+            delete tail;
+            head = nullptr, tail = nullptr;
+            _length--;
+            return true;
+        }
+        node *curr = head;
+        while (curr->next != tail)
+        {
+            curr = curr->next;
+        }
+        delete tail;
+        tail = curr;
+        tail->next = nullptr;
+        _length--;
+        return true;
+    }
+    bool popFront()
+    {
+        if (_length == 0)
+            return false;
+        if (_length == 1)
+        {
+            delete tail;
+            head = nullptr, tail = nullptr;
+            _length--;
+            return true;
+        }
+        else
+        {
+            node *temp = head->next;
+            delete head;
+            head = temp;
+        }
+        _length--;
+        return true;
+    }
+    bool deleteAt(int pos)
+    {
+        if (pos >= _length)
+        {
+            return false;
+        }
+        if (pos == 0)
+        {
+            popFront();
+            return true;
+        }
+        else if (pos == _length - 1)
+        {
+            popBack();
+            return true;
+        }
+        else
+        {
+            node *curr = head;
+            for (int i = 0; i < pos - 1; i++)
+            {
+                curr = curr->next;
+            }
+            node *temp = curr->next->next;
+            delete curr->next;
+            curr->next = temp;
+        }
+        _length--;
+        return true;
+    }
+
     void reverse()
     {
         node *curr = head, *prev = nullptr, *temp;
@@ -46,7 +165,7 @@ public:
     {
         node *curr = head;
 
-        cout << "List " << this << " content:" << endl;
+        cout << "List " << this << " content: (size = " << _length << ")" << endl;
         while (curr != nullptr)
         {
             cout << curr->data << " ";
@@ -54,29 +173,23 @@ public:
         }
         cout << endl;
     }
+    int size() { return _length; }
 };
 
 int main()
 {
     list list;
-    list.createNode(1);
-    list.createNode(2);
-    list.createNode(3);
-    list.createNode(4);
-    list.createNode(5);
+    list.pushBack(1);
+    list.pushBack(2);
+    list.pushBack(3);
+    list.pushBack(4);
+    list.pushBack(5);
+    list.pushFront(-1);
+    list.pushBack(99);
+    list.printAll();
 
+    while(list.popBack()); //delete all
     list.printAll();
-    list.reverse();
-    list.printAll();
-    list.reverse();
-    list.printAll();
+
     return 0;
 }
-
-/*
-Singly linked list:
-createNode: insert at the end;
-revese: revese the list;
-printAll(): display list content and address
-TODO: delete, insert start, insert at position
-*/
