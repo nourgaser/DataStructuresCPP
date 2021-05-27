@@ -47,7 +47,7 @@ public:
     }
     void displayAll()
     {
-        cout << "Contents of queue " << this << ": (size = " << _size << ")" << endl;
+        cout << "Contents of queue " << this << ": (size = " << _size << ", capacity = " << _capacity << ")" << endl;
         int curr = front;
         while (curr <= rear)
         {
@@ -63,19 +63,6 @@ public:
 int main()
 {
     queue q(5);
-    // q.enqueue(1);
-    // q.enqueue(2);
-    // q.enqueue(3);
-    // q.enqueue(4);
-    // q.enqueue(5);
-    // q.displayAll();
-
-    // q.dequeue();
-    // q.displayAll();
-
-    // while(q.dequeue()){} //dequeue all.
-    // q.displayAll();
-
     q.enqueue(1);
     q.enqueue(2);
     q.enqueue(3);
@@ -84,23 +71,9 @@ int main()
     q.displayAll();
 
     q.dequeue();
-    q.dequeue();
-    q.displayAll();
-    q.dequeue();
-    //q.dequeue();
-    q.displayAll();
-    q.enqueue(1);
-    q.enqueue(1);
-    q.enqueue(1);
-    q.enqueue(1);
-    q.enqueue(1);
     q.displayAll();
 
-    while (q.dequeue());
+    while(q.dequeue()){} //dequeue all.
     q.displayAll();
-
-    cout << "Capacity: " << q.capacity() << endl;
-    cout << "Size: " << q.size() << endl;
-
     return 0;
 }
