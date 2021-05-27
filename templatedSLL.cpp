@@ -224,19 +224,30 @@ public:
     //check TODO
     class iterator
     {
+    public:
+        list::iterator operator+(const list::iterator &itr2) {} //TODO for +, -, ++, --, 
     };
 };
 
 int main()
 {
-    list<string> list;
-    list.push_back("Nour");
-    list.push_back("Ali");
-    list.push_back("Ahmed");
-    list.push_back("Mohammed");
-    list.push_back("Roo");
+    list<string> list1;
+    list1.push_back("Nour");
+    list1.push_back("Ali");
+    list1.push_back("Ahmed");
+    list1.push_back("Mohammed");
+    list1.push_back("Roo");
 
-    list.displayAll();
+    list1.displayAll();
+
+    list<int> list2;
+    list2.push_back(101);
+    list2.push_back(102);
+    list2.push_back(103);
+    list2.push_back(104);
+    list2.push_back(105);
+
+    list2.displayAll();
     return 0;
 }
 
