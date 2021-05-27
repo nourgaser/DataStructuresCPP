@@ -11,9 +11,9 @@ class list
 {
 private:
     node *head, *tail;
+    int length;
 
 public:
-    int length;
     list() : head(nullptr), tail(nullptr), length(0) {}
 
     //insert into the list
@@ -153,6 +153,7 @@ public:
     }
 
     //retreive from the list
+    int size() {return length;}
     int front() { return head->data; }
     int back() { return tail->data; }
     int at(int pos)
@@ -200,13 +201,13 @@ int main()
     l.pushBack(3);
     l.pushBack(4);
     l.pushBack(5);
-    l.displayElements(l.length);
+    l.displayElements(l.size());
 
     l.insert(99, 4);
-    l.displayElements(l.length);
+    l.displayElements(l.size());
 
     l.remove(4);
-    l.displayElements(l.length);
+    l.displayElements(l.size());
 
     cout << "Front: " << l.front() << endl;
     cout << "Back: " << l.back() << endl;

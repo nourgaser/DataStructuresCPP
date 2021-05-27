@@ -11,9 +11,8 @@ class queue
 {
 private:
     node *front, *back; //first in->[front][]...[][back]<-last in 
-
-public:
     int length;
+public:
     queue() : front(nullptr), back(nullptr), length(0) {}
     void enqueue(int val)
     {

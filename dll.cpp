@@ -53,17 +53,21 @@ public:
         }
         length++;
     }
-    void insert(int pos, int val)
+    bool insert(int pos, int val)
     {
         if (pos == 0)
         {
             pushFront(val);
-            return;
+            return true;
         }
         else if (pos == length - 1)
         {
             pushBack(val);
-            return;
+            return true;
+        }
+        else if (pos >= length)
+        {
+            return false;
         }
         else
         {
@@ -72,8 +76,6 @@ public:
             for (int i = 0; i < pos; i++)
             {
                 curr = curr->next;
-                if (curr == nullptr)
-                    return;
             }
             temp->next = curr->next;
             temp->prev = curr;
@@ -81,38 +83,67 @@ public:
             curr->next = temp;
         }
         length++;
+        return true;
     }
-    void popBack()
+    bool popBack()
     {
         if (length == 0)
-            return;
-        node *temp = tail->prev;
-        delete tail;
-        tail = temp;
-        tail->next = nullptr;
+            return false;
+        if (length == 1)
+        {
+            delete tail;
+            head = nullptr, tail = nullptr;
+        }
+        else
+        {
+            node *temp = tail;
+            tail = tail->prev;
+            tail->next = nullptr;
+            delete temp;
+        }
         length--;
+        return true;
     }
-    void popFront()
+    bool popFront()
     {
-        if (length == 0) return;
-        node *temp = head->next;
-        delete head;
-        head = temp;
-        head->prev = nullptr;
+        if (length == 0)
+            return false;
+        if (length == 1)
+        {
+            delete tail;
+            head = nullptr, tail = nullptr;
+        }
+        else
+        {
+            node *temp = head->next;
+            delete head;
+            head = temp;
+            head->prev = nullptr;
+        }
         length--;
+        return true;
     }
-    void deleteAt(int pos)
+    bool deleteAt(int pos)
     {
-        if (length == 0) return;
+        if (length == 0)
+            return false;
+        if (pos >= length)
+            return false;
+            
         if (pos == 0)
         {
             popFront();
-            return;
+            return true;
         }
         else if (pos == length - 1)
         {
             popBack();
-            return;
+            return true;
+        }
+        else if (length == 1)
+        {
+            delete tail;
+            head = nullptr, tail = nullptr;
         }
         else
         {
@@ -120,13 +151,12 @@ public:
             for (int i = 0; i < pos; i++)
             {
                 curr = curr->next;
-                if (curr == nullptr)
-                    return;
             }
             curr->prev->next = curr->next;
             delete curr;
         }
         length--;
+        return true;
     }
     void printAll()
     {
@@ -140,6 +170,7 @@ public:
         }
         cout << endl;
     }
+    int size() { return length; }
 };
 
 int main()
@@ -153,6 +184,10 @@ int main()
     list.printAll();
 
     list.popBack();
+    list.printAll();
+
+    while (list.popBack())
+        ;
     list.printAll();
 
     return 0;

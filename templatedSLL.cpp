@@ -227,12 +227,12 @@ public:
 };
 
 int main() {
-    list<int> list;
-    list.push_back(5);
-    list.push_back(6);
-    list.push_back(7);
-    list.push_back(8);
-    list.push_back(9);
+    list<string> list;
+    list.push_back("Nour");
+    list.push_back("Ali");
+    list.push_back("Ahmed");
+    list.push_back("Mohammed");
+    list.push_back("Roo");
 
     list.displayAll();
     return 0;

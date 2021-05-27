@@ -2,10 +2,12 @@
 Basic data structures' implementations in C++. 
 
 ## CONTANT 
-- [cdll.cpp](cdll.cpp)
-- [csll.cpp](csll.cpp)
-- [dll.cpp](dll.cpp)
-- [queue.cpp](queue.cpp)
 - [sll.cpp](sll.cpp)
-- [stack.cpp](stack.cpp])
-- [templatedSLL.cpp](templatedSLL.cpp)
+- [dll.cpp](dll.cpp)
+- [csll.cpp](csll.cpp)
+- [cdll.cpp](cdll.cpp)
+- [queue-list.cpp](queue-list.cpp)
+- [queue-array.cpp](queue-array.cpp)
+- [stack-list.cpp](stack-list.cpp])
+- [stack-array.cpp](stack-array.cpp)
+- [templatedSLL.cpp](templatedSLL.cpp) 
