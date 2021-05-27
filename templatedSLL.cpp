@@ -11,12 +11,12 @@ private:
         node *next;
     };
     node *head, *tail;
-    int length;
+    int _length;
 
 public:
     list()
     {
-        head = nullptr, tail = nullptr, length = 0;
+        head = nullptr, tail = nullptr, _length = 0;
     }
     void push_back(T value)
     {
@@ -33,7 +33,7 @@ public:
             tail->next = temp;
             tail = temp;
         }
-        length++;
+        _length++;
     }
     void push_front(T value)
     {
@@ -50,23 +50,23 @@ public:
             temp->next = head;
             head = temp;
         }
-        length++;
+        _length++;
     }
     void insert(int pos, T value)
     {
-        if (length > 0 && pos < length && pos >= 0)
+        if (_length > 0 && pos < _length && pos >= 0)
         {
             if (pos == 0)
             {
                 push_front(value);
                 return;
             }
-            else if (pos == length - 1)
+            else if (pos == _length - 1)
             {
                 push_back(value);
                 return;
             }
-            if (length >= 3)
+            if (_length >= 3)
             {
                 node *pre = head, *cur = head->next;
                 node *temp = new node;
@@ -79,11 +79,11 @@ public:
                 pre->next = temp;
                 temp->next = cur;
             }
-            else if (length == 1)
+            else if (_length == 1)
             {
                 push_front(value);
             }
-            else if (length == 2)
+            else if (_length == 2)
             {
                 if (pos == 0)
                 {
@@ -94,14 +94,14 @@ public:
                     push_back(value);
                 }
             }
-            length++;
+            _length++;
         }
     }
     void pop_back()
     {
-        if (length > 0)
+        if (_length > 0)
         {
-            if (length == 1)
+            if (_length == 1)
             {
                 delete head;
                 head = nullptr, tail = nullptr;
@@ -118,14 +118,14 @@ public:
                 pre->next = nullptr;
                 delete cur;
             }
-            length--;
+            _length--;
         }
     }
     void pop_front()
     {
-        if (length > 0)
+        if (_length > 0)
         {
-            if (length == 1)
+            if (_length == 1)
             {
                 delete head;
                 head = nullptr, tail = nullptr;
@@ -136,25 +136,25 @@ public:
                 delete head;
                 head = temp;
             }
-            length--;
+            _length--;
         }
     }
     void remove(int pos)
     {
-        if (length > 0 && pos < length && pos >= 0)
+        if (_length > 0 && pos < _length && pos >= 0)
         {
             if (pos == 0)
             {
                 pop_front();
                 return;
             }
-            else if (pos == length - 1)
+            else if (pos == _length - 1)
             {
                 pop_back();
                 return;
             }
 
-            if (length >= 3)
+            if (_length >= 3)
             {
                 node *pre = head, *cur = head->next;
                 for (int i = 1; i < pos; i++)
@@ -165,12 +165,12 @@ public:
                 pre->next = cur->next;
                 delete cur;
             }
-            else if (length == 1)
+            else if (_length == 1)
             {
                 delete head;
                 head = nullptr, tail = nullptr;
             }
-            else if (length == 2)
+            else if (_length == 2)
             {
                 if (pos == 0)
                 {
@@ -181,7 +181,7 @@ public:
                     pop_back();
                 }
             }
-            length--;
+            _length--;
         }
     }
 
@@ -195,7 +195,7 @@ public:
     }
     T at(int pos)
     {
-        if (pos < length && pos >= 0)
+        if (pos < _length && pos >= 0)
         {
             node *cur = head;
             for (int i = 1; i <= pos; i++)
@@ -206,6 +206,7 @@ public:
         }
         return INT32_MIN;
     }
+    int size() { return _length; }
     void displayAll()
     {
         cout << "===========================================" << endl;
@@ -215,12 +216,11 @@ public:
             cout << cur->value << "\t";
             cur = cur->next;
         }
-        cout << "\nLength: " << length << ", Head: " << head->value << ", Tail: " << tail->value;
+        cout << "\nLength: " << _length << ", Head: " << head->value << ", Tail: " << tail->value;
         cout << endl
              << "===========================================\n"
              << endl;
     }
-
     //check TODO
     class iterator
     {
