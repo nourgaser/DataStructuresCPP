@@ -8,7 +8,7 @@ private:
     int rear, front, _size, *arr, _capacity;
 
 public:
-    queue(int capacity) : rear(-1), front(-1), _size(0), arr(new int[capacity]), _capacity(capacity) {}
+    queue(int capacity) : rear(-2), front(-1), _size(0), arr(new int[capacity]), _capacity(capacity) {}
     bool enqueue(int n)
     {
         if (_size == _capacity)
