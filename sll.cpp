@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
-struct node
-{
-    int data;
-    node *next;
-};
 class list
 {
 private:
+    struct node
+    {
+        int data;
+        node *next;
+    };
     node *head, *tail;
 
 public:

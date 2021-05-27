@@ -2,18 +2,17 @@
 using namespace std;
 
 template <typename T>
-struct node
-{
-    T value;
-    node<T> *next;
-};
-
-template <typename T>
 class list
 {
 private:
-    node<T> *head, *tail;
+    struct node
+    {
+        T value;
+        node *next;
+    };
+    node *head, *tail;
     int length;
+
 public:
     list()
     {
@@ -21,7 +20,7 @@ public:
     }
     void push_back(T value)
     {
-        node<T> *temp = new node<T>;
+        node *temp = new node;
         temp->value = value;
         temp->next = nullptr;
         if (head == nullptr)
@@ -38,7 +37,7 @@ public:
     }
     void push_front(T value)
     {
-        node<T> *temp = new node<T>;
+        node *temp = new node;
         temp->value = value;
         if (head == nullptr)
         {
@@ -69,8 +68,8 @@ public:
             }
             if (length >= 3)
             {
-                node<T> *pre = head, *cur = head->next;
-                node<T> *temp = new node<T>;
+                node *pre = head, *cur = head->next;
+                node *temp = new node;
                 temp->value = value;
                 for (int i = 1; i < pos; i++)
                 {
@@ -109,7 +108,7 @@ public:
             }
             else
             {
-                node<T> *pre, *cur = head;
+                node *pre, *cur = head;
                 while (cur != tail)
                 {
                     pre = cur;
@@ -133,7 +132,7 @@ public:
             }
             else
             {
-                node<T> *temp = head->next;
+                node *temp = head->next;
                 delete head;
                 head = temp;
             }
@@ -157,7 +156,7 @@ public:
 
             if (length >= 3)
             {
-                node<T> *pre = head, *cur = head->next;
+                node *pre = head, *cur = head->next;
                 for (int i = 1; i < pos; i++)
                 {
                     pre = cur;
@@ -186,17 +185,19 @@ public:
         }
     }
 
-    T front() {
+    T front()
+    {
         return head->value;
     }
-    T back() {
+    T back()
+    {
         return tail->value;
     }
     T at(int pos)
     {
         if (pos < length && pos >= 0)
         {
-            node<T> *cur = head;
+            node *cur = head;
             for (int i = 1; i <= pos; i++)
             {
                 cur = cur->next;
@@ -208,7 +209,7 @@ public:
     void displayAll()
     {
         cout << "===========================================" << endl;
-        node<T> *cur = head;
+        node *cur = head;
         while (cur != nullptr)
         {
             cout << cur->value << "\t";
@@ -221,12 +222,13 @@ public:
     }
 
     //check TODO
-    class iterator {
-
+    class iterator
+    {
     };
 };
 
-int main() {
+int main()
+{
     list<string> list;
     list.push_back("Nour");
     list.push_back("Ali");
@@ -238,4 +240,4 @@ int main() {
     return 0;
 }
 
-//TODO: add list subclass iterator with operator-overloading for +,-,++,--, and class methods 
+//TODO: add list subclass iterator with operator-overloading for +,-,++,--, and class methods

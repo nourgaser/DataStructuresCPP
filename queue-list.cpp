@@ -1,17 +1,17 @@
 #include <iostream>
 using namespace std;
 
-struct node
-{
-    int data;
-    node *next;
-};
-
 class queue
 {
 private:
-    node *front, *back; //first in->[front][]...[][back]<-last in 
+    struct node
+    {
+        int data;
+        node *next;
+    };
+    node *front, *back; //first in->[front][]...[][back]<-last in
     int length;
+
 public:
     queue() : front(nullptr), back(nullptr), length(0) {}
     void enqueue(int val)
@@ -37,11 +37,13 @@ public:
         {
             return false;
         }
-        if (length == 1) {
+        if (length == 1)
+        {
             delete back;
             back = nullptr, front = nullptr;
         }
-        else {
+        else
+        {
             node *temp = front->next;
             delete front;
             front = temp;
@@ -75,7 +77,8 @@ int main()
     q.dequeue();
     q.printAll();
 
-    while(q.dequeue()); //dequeue all
+    while (q.dequeue())
+        ; //dequeue all
     q.printAll();
 
     return 0;

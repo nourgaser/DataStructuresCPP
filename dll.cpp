@@ -1,15 +1,14 @@
 #include <iostream>
 using namespace std;
 
-struct node
-{
-    int data;
-    node *next, *prev;
-};
-
 class list
 {
 private:
+    struct node
+    {
+        int data;
+        node *next, *prev;
+    };
     node *head, *tail;
     int length;
 
@@ -129,7 +128,7 @@ public:
             return false;
         if (pos >= length)
             return false;
-            
+
         if (pos == 0)
         {
             popFront();

@@ -1,15 +1,16 @@
 #include <iostream>
 using namespace std;
 
-struct node
-{
-    int data;
-    node *next;
-};
 class stack
 {
 private:
+    struct node
+    {
+        int data;
+        node *next;
+    };
     node *top;
+
 public:
     stack()
     {
@@ -63,7 +64,8 @@ int main()
     for (int i = 1; i < 6; i++)
         s.push(i);
     s.printAll();
-    while (s.pop()); //pop all.
+    while (s.pop())
+        ; //pop all.
     s.printAll();
     return 0;
 }
